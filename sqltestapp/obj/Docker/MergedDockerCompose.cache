@@ -1,0 +1,11 @@
+services:
+  sqltestwebapi:
+    build:
+      context: D:\DEV\SQLConnIssueRepro\sqltestapp\sqltestwebapi
+      dockerfile: Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: ramontc/sqltestwebapi
+    ports:
+    - 3000:80/tcp
+version: '3.0'

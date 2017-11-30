@@ -1,0 +1,9 @@
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\bin\Debug\WebTest1.webtest
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\bin\Debug\LoadTest1.loadtest
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\bin\Debug\WebAndLoadTestProject.dll
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\bin\Debug\WebAndLoadTestProject.pdb
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\obj\Debug\WebAndLoadTestProject.csprojResolveAssemblyReference.cache
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\obj\Debug\WebAndLoadTestProject.csproj.CoreCompileInputs.cache
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\obj\Debug\WebAndLoadTestProject.dll
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\obj\Debug\WebAndLoadTestProject.pdb
+D:\DEV\SQLConnIssueRepro\LoadTests\WebAndLoadTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll

@@ -1,0 +1,1 @@
+D:\DEV\SQLConnIssueRepro\sqltestapp\obj\Release\docker-compose.dcproj.CoreCompileInputs.cache

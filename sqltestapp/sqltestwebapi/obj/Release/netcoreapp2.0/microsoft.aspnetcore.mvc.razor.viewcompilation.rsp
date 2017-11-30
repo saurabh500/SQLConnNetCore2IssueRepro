@@ -1,0 +1,5 @@
+D:\DEV\SQLConnIssueRepro\sqltestapp\sqltestwebapi
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=sqltestwebapi
+--content-root=D:\DEV\SQLConnIssueRepro\sqltestapp\sqltestwebapi
+--file=

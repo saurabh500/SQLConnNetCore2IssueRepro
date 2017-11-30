@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  sqltestwebapi:
+    image: issuerepro/sqltestwebapi
+    build:
+      context: ./sqltestwebapi
+      dockerfile: Dockerfile

@@ -1,0 +1,21 @@
+services:
+  sqltestwebapi:
+    build:
+      args:
+        source: obj/Docker/publish/
+      context: D:\DEV\SQLConnIssueRepro\sqltestapp\sqltestwebapi
+      dockerfile: Dockerfile
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: issuerepro/sqltestwebapi
+    labels:
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/bash -c "if PID=$$(pidof
+        -x dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - 3000:80/tcp
+    volumes:
+    - C:\Users\CESARDL\vsdbg:/remote_debugger:ro
+version: '3.0'
