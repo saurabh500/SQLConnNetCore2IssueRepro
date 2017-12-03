@@ -17,10 +17,27 @@ namespace sqltestwebapi
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+//        public static IWebHost BuildWebHost(string[] args) =>
+//            WebHost.CreateDefaultBuilder(args)
+//                .UseApplicationInsights()
+//                .UseStartup<Startup>()                
+//                .Build();
+
+        
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("hosting.json", optional: true)
+                .AddCommandLine(args)
+                .Build();
+
+            return WebHost.CreateDefaultBuilder(args)
+                //.UseUrls("http://*:5000")
+                .UseConfiguration(config)
                 .UseApplicationInsights()
                 .UseStartup<Startup>()
                 .Build();
+        }
     }
 }
