@@ -86,6 +86,7 @@ namespace sqltestwebapi.Controllers
             string serverName = "eshopsql-e3h5ug5xd3rfs.database.windows.net";
             int port = 1433;
             Task<Socket> connectTask = ConnectAsync(serverName, port);
+            connectTask.Wait(30 * 1000);
             Socket _socket = connectTask.Result;
             if(_socket !=null && _socket.Connected)
             {
