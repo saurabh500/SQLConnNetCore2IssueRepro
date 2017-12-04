@@ -4,6 +4,9 @@ using System;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+
+using System.Net;
 
 namespace sqltestwebapi.Controllers
 {
@@ -74,6 +77,43 @@ namespace sqltestwebapi.Controllers
                 }
             }
 
+            
+        }
+        
+        [HttpGet("sqlnet")]
+        public async Task<IActionResult> GetNetwork()
+        {
+            string serverName = "eshopsql-e3h5ug5xd3rfs.database.windows.net";
+            int port = 1433;
+            Task<Socket> connectTask = ConnectAsync(serverName, port);
+            Socket _socket = connectTask.Result;
+            if(_socket !=null && _socket.Connected)
+            {
+                Console.WriteLine("Socket Connected");
+            }
+            
+            return Ok(0);
+        }
+
+        private async Task<Socket> ConnectAsync(string serverName, int port)
+        {
+            IPAddress[] addresses = await Dns.GetHostAddressesAsync(serverName).ConfigureAwait(false);
+            IPAddress targetAddrV4 = Array.Find(addresses, addr => (addr.AddressFamily == AddressFamily.InterNetwork));
+            {
+                IPAddress targetAddr = targetAddrV4;
+                var socket = new Socket(targetAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+                try
+                {
+                    await socket.ConnectAsync(targetAddr, port).ConfigureAwait(false);
+                }
+                catch
+                {
+                    socket.Dispose();
+                    throw;
+                }
+                return socket;
+            }
         }
     }
 
