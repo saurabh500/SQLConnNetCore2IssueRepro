@@ -8,17 +8,27 @@ using System.Net.Sockets;
 
 using System.Net;
 using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
 
 namespace sqltestwebapi.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private IConfiguration _configuration;
+        private string _connectionString;
+
+        public ValuesController(IConfiguration configuration)
+        {
+            this._configuration = configuration;
+            this._connectionString = _configuration["ConnectionString"];
+        }
+
         // GET api/values
         [HttpGet("dapper")]
         public async Task<IActionResult> GetDapper()
         {
-            var connectionString = "Server=tcp:ss-desktop2.redmond.corp.microsoft.com,1433;Initial Catalog=fortune;Persist Security Info=False;User ID=saurabh;Password=HappyPass321;MultipleActiveResultSets=False;Max Pool Size=400;Connection Timeout=30;";
+            var connectionString = _connectionString;
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -42,7 +52,11 @@ namespace sqltestwebapi.Controllers
         [HttpGet("native")]
         public async Task<IActionResult> GetNative()
         {
-            var connectionString = "Server=tcp:sqlloadtest.database.windows.net,1433;Initial Catalog=fortune;Persist Security Info=False;User ID=saurabh;Password=HappyPass321;MultipleActiveResultSets=False;Max Pool Size=400;Connection Timeout=30;";
+            var connectionString = _connectionString;
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("No Connection String available");
+            }
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -68,14 +82,12 @@ namespace sqltestwebapi.Controllers
                     throw new InvalidOperationException(x.ToString());
                 }
             }
-
-
         }
 
         [HttpGet("sqlasync")]
         public async Task<IActionResult> GetSqlAsync()
         {
-            var connectionString = "Server=tcp:sqlloadtest.database.windows.net,1433;Initial Catalog=fortune;Persist Security Info=False;User ID=saurabh;Password=HappyPass321;MultipleActiveResultSets=False;Max Pool Size=400;Connection Timeout=30;";
+            var connectionString = _connectionString;
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -95,7 +107,7 @@ namespace sqltestwebapi.Controllers
                         }
                         return Ok(count);
                     }
-                    
+
 
                 }
                 catch (Exception x)

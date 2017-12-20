@@ -24,7 +24,7 @@ namespace sqltestwebapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry(Configuration);
-
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc();
         }
 
